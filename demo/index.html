@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Colorpicker</title>
+    <link href="../jquery.mashdraggin.colorpicker.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="../jquery.mashdraggin.colorpicker.js"></script>
+    <script src="demo.js"></script>
+    <style>
+        body, html { width: 100%; height: 100%; overflow: auto; background: #888888 }
+        h3,
+        .colorpicker-container form,
+        .colorpicker-container form input {
+            font-family: "Lucida Console", Monaco, monospace;
+        }
+        .colorpicker-container form {
+            margin-top: 2px;
+            float: left;
+            padding: 2px;
+        }
+        .colorpicker-container form legend {
+            font-family: Arial, sans-serif;
+            font-size: 12px;
+            margin: 2px 0 2px 6px;
+        }
+        .colorpicker-container form fieldset {
+            -webkit-border-radius: 3px;
+            -moz-border-radius: 3px;
+            border-radius: 3px;
+            border: 1px solid;
+            padding: 4px;
+        }
+
+        .colorpicker-container form label {
+            font-size: 10px;
+            margin: 2px;
+        }
+
+        .colorpicker-container form input {
+            margin: 0.2em 0.2em 0.2em 0.4em;
+            width: 14.5em;
+        }
+        .colorpicker-container form input.rgba {
+            margin: 0.2em 0.2em 0.2em -0.2em;
+            width: 14.5em;
+        }
+    </style>
+</head>
+    <body>
+        <h3>Mashdraggin ColorPicker Demo</h3>
+        <div class="colorpicker-container">
+
+            <!-- the only markup required for the widget is a single element -->
+            <div class="color-picker"></div>
+
+            <!-- we can use a form to display change event data -->
+            <form>
+                <fieldset>
+                    <legend>Color Values</legend>
+                    <div class="input-block">
+                        <label for="hex">hex</label>
+                        <input id="hex" name="hex" type="text">
+                    </div>
+                    <div class="input-block">
+                        <label for="rgb">rgb</label>
+                        <input id="rgb" name="rgb" type="text">
+                    </div>
+                    <div class="input-block">
+                        <label class="rgba-label" for="rgba">rgba</label>
+                        <input id="rgba" name="rgba" class="rgba" type="text">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </body>
+</html>

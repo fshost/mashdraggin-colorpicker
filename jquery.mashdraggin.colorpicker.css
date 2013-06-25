@@ -1,0 +1,135 @@
+.colorpicker-container {
+    list-style: none;
+    *zoom: 1;
+    clear: both;
+    border:0;
+    overflow: hidden;
+    padding: 4px;
+    margin: 4px;
+}
+.colorpicker,
+.colorpicker-saturation, .colorpicker-hue, .colorpicker-alpha,
+.colorpicker-preview-bg, .colorpicker-preview {
+    position: relative; margin: 0; padding: 0; border: 0; 
+}
+.colorpicker, .colorpicker-saturation, .colorpicker-hue, .colorpicker-alpha {
+    float: left;
+}
+.colorpicker-inner, .colorpicker-saturation, .colorpicker-hue, .colorpicker-alpha {
+    height: 100px;
+}
+.colorpicker {
+        background: #fff;
+    border: 1px solid black;
+    height: 116px;
+    overflow:hidden;
+}
+.colorpicker-inner {
+    border: 0;
+}
+.colorpicker-hue, .colorpicker-alpha {
+    border-color: #000;
+    border-width: 0 0 1px 1px;
+    border-style: solid;
+
+
+}
+.colorpicker-saturation {
+    width: 100px;
+    height: 100px;
+    background-image: url(images/saturation.png);
+    cursor: crosshair;
+}
+.colorpicker-saturation i {
+    position: absolute;
+    top: 0; left: 0;
+    margin: -4px 0 0 -4px;
+    border: 1px solid #000;
+    height: 5px; width: 5px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;  
+}
+.colorpicker-saturation i b {
+    display: block; height: 5px; width: 5px;
+    border: 1px solid #fff;
+    -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px;
+}
+.colorpicker-hue, .colorpicker-alpha {
+    width: 15px; height: 100px; cursor: pointer; }
+.colorpicker-hue i, .colorpicker-alpha i {
+    display: block;
+    -webkit-transform: rotate(360deg);
+    -moz-transform: scale(1.1);
+    -o-transform: rotate(360deg);
+    transform: rotate(360eg);
+    position: absolute; top: 0; left: 0;
+
+    cursor: ns-resize;
+    width: 3px; height: 0;
+    border-color: transparent;
+    border-style: solid;
+    margin-top: -3px;
+    border-width: 3px;
+        border-right: 6px solid  #232323;
+    border-left: 6px solid  #232323;
+}
+.colorpicker-hue i:hover, .colorpicker-alpha i:hover {
+    border-right-color:#ccc;
+    border-left-color:#ccc;
+
+}
+.colorpicker-hue { background-image: url(images/hue.png); }
+.colorpicker-alpha { display: none; background-image: url(images/alpha.png); }
+
+.colorpicker-preview,
+.colorpicker-preview-bg {
+    height: 15px;
+}
+.colorpicker-preview-bg {
+    border-width: 1px 1px 0 0;
+    border-style: solid;
+    border-color: #000;
+    background-image: url(images/alpha.png);
+    background-repeat: repeat-x;
+    background-position: bottom;
+    margin-right: 15px;
+}
+
+.colorpicker-alpha .slider-indicator,
+.colorpicker-hue .slider-indicator {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: scale(1.1);
+    -o-transform: rotate(360deg);
+    transform: rotate(360eg);
+    margin-left: -6px;
+     margin-top: -2px;
+    display: block; width: 7px; height: 0;
+    border-color: transparent;
+    border-style: solid;
+    border-width: 2px;
+    border-right: 4px solid #000;
+    border-left: 4px solid #000;
+}
+
+/*.colorpicker-hue i .triangle-inset {
+    position:absolute; border-width: 2px;
+}
+.colorpicker-hue i .triangle-left .triangle-inset {
+    border-left: 0;
+    border-right: 3px solid #000;
+    margin: -4px 0 0 2px;
+}
+.colorpicker-hue i .triangle-left:hover .triangle-inset {
+    border-right-color: #6CBAFF;
+
+}
+.colorpicker-hue i .triangle-right .triangle-inset {
+    border-right: 0;
+    border-left: 3px solid #000;
+    margin: -4px 0 0 -10px;
+}
+.colorpicker-hue i .triangle-right:hover .triangle-inset {
+    border-left-color: #6CBAFF;
+
+}*/

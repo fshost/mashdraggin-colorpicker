@@ -1,0 +1,7 @@
+{
+  "name": "mashdraggin-colorpicker",
+  "version": "0.0.1",
+  "main": [
+    "jquery.mashdraggin.colorpicker.js", "jquery.mashdraggin.colorpicker.css"
+  ]
+}
