@@ -17,18 +17,19 @@
     /* colorpicker widget
      
      */
-    $.widget('mash.colorpicker', $.ui.mouse, {
+    $.widget('dragn.colorpicker', $.ui.mouse, {
         widgetEventPrefix: 'colorpicker',
         options: {
             value: '#fff', // aliased to 'value'
             format: 'hex',
+            alpha: false,
             classes: {
-                container: 'colorpicker-container',
-                colorpicker: 'colorpicker',
-                preview: 'colorpicker-preview',
-                saturation: 'colorpicker-saturation',
-                hue: 'colorpicker-hue',
-                alpha: 'colorpicker-alpha'
+                container: 'mashdraggin-colorpicker-container',
+                colorpicker: 'mashdraggin-colorpicker',
+                preview: 'mashdraggin-colorpicker-preview',
+                saturation: 'mashdraggin-colorpicker-saturation',
+                hue: 'mashdraggin-colorpicker-hue',
+                alpha: 'mashdraggin-colorpicker-alpha'
             }
         },
         _setOption: function(key, value) {
@@ -45,16 +46,18 @@
             this.picker = $(this.template).prependTo(element);
             this.preview = o.preview || element.find('.' + o.classes.preview);
             this.base = this.picker.find('div:first')[0].style;
+
         },
         _init: function() {
             var o = this.options,
                 format = o.format || 'hex',
                 color = this.element.data('value') || o.value || '#ffffff';
-            if (format === 'rgba' || format === 'hsla') {
+            if ((!o.alpha && format === 'rgba' || format === 'hsla') || o.alpha) {
                 this.picker.addClass('alpha');
                 this.alphaSlider = this.picker.find('.' + o.classes.alpha).show();
                 this.alpha = this.alphaSlider[0].style;
             }
+            this.element.width(this.picker.width() + 10);
             this.setColor(color);
         },
         _destroy: function() {
@@ -70,12 +73,12 @@
             var target = $(e.target);
             //detect the slider and set the limits and callbacks
             var zone = target.closest('div');
-            if (!zone.is('.colorpicker')) {
-                if (zone.is('.colorpicker-saturation')) {
+            if (!zone.is('.mashdraggin-colorpicker')) {
+                if (zone.is('.mashdraggin-colorpicker-saturation')) {
                     this.slider = $.extend({}, this.sliders.saturation);
-                } else if (zone.is('.colorpicker-hue')) {
+                } else if (zone.is('.mashdraggin-colorpicker-hue')) {
                     this.slider = $.extend({}, this.sliders.hue);
-                } else if (zone.is('.colorpicker-alpha')) {
+                } else if (zone.is('.mashdraggin-colorpicker-alpha')) {
                     this.slider = $.extend({}, this.sliders.alpha);
                 } else {
                     return false;
@@ -97,17 +100,17 @@
             }
             return false;
         },
-        _mouseMove: function(e) {
+        _mouseMove: function(event) {
             var left = Math.max(
                 0,
                 Math.min(
                 this.slider.maxLeft,
-                this.slider.left + ((e.pageX || this.pointer.left) - this.pointer.left)));
+                this.slider.left + ((event.pageX || this.pointer.left) - this.pointer.left)));
             var top = Math.max(
                 0,
                 Math.min(
                 this.slider.maxTop,
-                this.slider.top + ((e.pageY || this.pointer.top) - this.pointer.top)));
+                this.slider.top + ((event.pageY || this.pointer.top) - this.pointer.top)));
             this.slider.knob.left = left + 'px';
             this.slider.knob.top = top + 'px';
             if (this.slider.callLeft) {
@@ -117,10 +120,10 @@
                 this.color[this.slider.callTop].call(this.color, top / 100);
             }
             var data = this.getData();
-            e = e || {};
-            e.data = $.extend(e.data || {}, data);
-            this._trigger('change', e, data);
-            this.previewColor();
+            event = event || {};
+            event.data = $.extend(event.data || {}, data);
+            this._trigger('change', event, data);
+            this.previewColor(event, data);
         },
         getData: function() {
             var o = this.options,
@@ -132,7 +135,6 @@
             data.value = typeof this[data.format] === 'function' ? this[data.format]() : this.hex();
             return data;
         },
-
         setColor: function(newColor) {
             var color = new Color(newColor);
             // in case color is passed as word like 'blue', we get computed value
@@ -158,7 +160,7 @@
                 .eq(2).css('top', 100 * (1 - this.color.value.a));
             this.previewColor();
         },
-        previewColor: function() {
+        previewColor: function(event, data) {
             this.preview.css('backgroundColor', this.color.toHex());
             var rgb = this.color.toRGB();
             if (rgb.a < 1) {
@@ -168,10 +170,11 @@
             }
             //set the color for brightness/saturation slider
             this.base.backgroundColor = this.color.toHex(this.color.value.h, 1, 1, 1);
-            //set te color for alpha slider
+            //set color for alpha slider
             if (this.alpha) {
                 this.alpha.backgroundColor = this.color.toHex();
             }
+            if (event && data) this._trigger('change', event, data);
         },
 
         // translate a format from Color object to a css string
@@ -221,19 +224,19 @@
             }
         },
         template: [
-                '<div class="colorpicker">',
-                '<div class="colorpicker-inner">',
-                '<div class="colorpicker-saturation">',
+                '<div class="mashdraggin-colorpicker">',
+                '<div class="mashdraggin-colorpicker-inner">',
+                '<div class="mashdraggin-colorpicker-saturation">',
                 '<i><b></b></i>',
                 '</div>',
-                '<div class="colorpicker-hue">',
+                '<div class="mashdraggin-colorpicker-hue">',
                 '<i>',
                 '<span class="slider-indicator">',
                 '<span class="slider-indicator-inset"></span>',
                 '</span>',
                 '</i>',
                 '</div>',
-                '<div class="colorpicker-alpha">',
+                '<div class="mashdraggin-colorpicker-alpha">',
                 '<i>',
                 '<span class="slider-indicator">',
                 '<span class="slider-indicator-inset"></span>',
@@ -241,8 +244,8 @@
                 '</i>',
                 '</div>',
                 '</div>',
-                '<div class="colorpicker-preview-bg">',
-                '<div class="colorpicker-preview"></div>',
+                '<div class="mashdraggin-colorpicker-preview-bg">',
+                '<div class="mashdraggin-colorpicker-preview"></div>',
                 '</div>',
                 '</div>'
 
