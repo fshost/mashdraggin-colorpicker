@@ -1,7 +1,7 @@
 Mashdraggin ColorPicker
 =====
 
-A color-picker widget for jQuery UI that includes the ability to work with gradients.
+A color-picker widget for jQuery UI that includes the ability to work with gradients. One more tiny but pita component, almost finished (needs eye-dropper), for mashdraggin, a node.js / socket.io / backbone / jQuery UI based real-time, multi-user, in-browser, ultra-hyphenated editor, designer, and visual mashup-builder for web apps I've been working on for three years now.  Seriously.
 
 
 ### example
