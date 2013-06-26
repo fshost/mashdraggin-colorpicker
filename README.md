@@ -1,7 +1,7 @@
 Mashdraggin ColorPicker
 =====
 
-A color-picker widget for jQuery UI.
+A color-picker widget for jQuery UI that includes the ability to work with gradients.
 
 
 ### example
@@ -14,11 +14,17 @@ $('#someDiv').colorpicker({
     }
 });
 ```
-
+to work with color-stops (gradients)
+```javascript
+$('#someDiv').colorpicker({
+    format: 'rgba',
+    gradient: true
+});
+```
 see demo / tests for more examples
 
 ### todo
-add gradients
+add eye-dropper
 
 ### license
 MIT

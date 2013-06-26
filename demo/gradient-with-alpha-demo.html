@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Colorpicker</title>
+    <link href="../jquery.mashdraggin.colorpicker.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script src="../jquery.mashdraggin.colorpicker.js"></script>
+    <style>
+        body, html { width: 100%; height: 100%; overflow: auto; background: #ccc; font-family: "Lucida Console", Monaco, monospace; }
+        .colorpicker-container { float:left; margin: 2em 4em }
+        .preview {
+            position: relative;
+            margin-top: 2em;
+            float: left;
+            width: 200px;
+            height: 130px;
+            border: 2px solid #000;
+            background: -webkit-linear-gradient(top, rgb(176, 60, 60) 0%, rgb(16, 28, 24) 100%);
+            z-index: 2;
+        }
+        .behind {
+            position: relative;
+            margin-top: 1.5em;
+            margin-left: -4em;
+            float: left;
+            width: 200px;
+            height: 130px;
+            border: 2px solid #000;
+            background: -webkit-linear-gradient(top, rgb(176, 60, 60) 0%, rgb(16, 28, 24) 100%);
+            z-index: 1;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.colorpicker').colorpicker({
+                gradient: true,
+                format: 'rgba',
+                change: function(event, data) {
+                    $('.preview').css('background', data.value.replace('left', 'top'));
+                  
+                    console.log('event.target.id:', event.target.id);
+                    console.log('preview bg color:', $(event.target).find('.mashdraggin-colorpicker-preview').css('backgroundColor'));
+                }
+            });
+        });
+    </script>
+</head>
+    <body>
+        <h3>Mashdraggin ColorPicker Demo - Gradients</h3>
+        <p>Instructions:</p>
+        <ul>
+            <li>Select a stop to edit its color.</li>
+            <li>Drag the stop to change its position.</li>
+            <li>Double click to add new stops.</li>
+            <li>Drag stops off of the widget to remove them.</li>
+        </ul>
+        <div class="colorpicker-container">
+            <div class="colorpicker"></div>
+        </div>
+        <div class="preview"></div>
+        <div class="behind"></div>
+    </body>
+</html>
