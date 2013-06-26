@@ -5,7 +5,7 @@ A color-picker widget for jQuery UI that includes the ability to work with gradi
 
 
 ### example
-assuming you have html with an empty div element with id of #someDiv and some javascript firing after page/dom load event, then your code would look like
+assuming you have html with an empty div element with id of `someDiv´ and some javascript firing after page/dom load event, then your code would look like
 
 ```javascript
 $('#someDiv').colorpicker({
@@ -14,7 +14,7 @@ $('#someDiv').colorpicker({
     }
 });
 ```
-to work with color-stops (gradients)
+to work with color-stops (gradients) and alpha-channel using rgba colors
 ```javascript
 $('#someDiv').colorpicker({
     format: 'rgba',
